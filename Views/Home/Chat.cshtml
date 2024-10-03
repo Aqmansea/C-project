@@ -1,0 +1,122 @@
+@model List<ChatMessage>
+
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <!-- 左側群組和好友列表 -->
+        <div class="col-3 p-3 chat-list" style="background-color: #f8f9fa; height: 100%;">
+            <h5>Chats</h5>
+            <input type="text" class="form-control mb-3" placeholder="Search chats or messages" />
+            <ul class="list-group mb-4">
+                <h6>Groups</h6>
+                <li class="list-group-item active" id="groupChat" onclick="switchChat('group')">
+                    <strong>Group 1</strong> <small>(10 unread)</small>
+                </li>
+                <li class="list-group-item" id="groupChat2" onclick="switchChat('group')">
+                    <strong>Group 2</strong> <small>(5 unread)</small>
+                </li>
+            </ul>
+
+            <ul class="list-group">
+                <h6>Friends</h6>
+                <li class="list-group-item" id="privateChat" onclick="switchChat('private')">
+                    <img src="friend1.png" alt="Friend 1" class="rounded-circle" width="30" />
+                    Friend 1 <small>(online)</small>
+                </li>
+                <li class="list-group-item" id="privateChat2" onclick="switchChat('private')">
+                    <img src="friend2.png" alt="Friend 2" class="rounded-circle" width="30" />
+                    Friend 2 <small>(offline)</small>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 右側聊天區域 -->
+        <div class="col-9 p-0 d-flex flex-column" style="height: 100%;">
+            <!-- 頂部聊天頭 -->
+            <div class="chat-header p-3" style="background-color: #007bff; color: white; border-bottom: 1px solid #ddd;">
+                <h5 id="chatTitle">Group Chat</h5>
+                <small>Online</small>
+            </div>
+
+            <!-- 聊天消息顯示區域 -->
+            <div class="chat-body p-3 flex-grow-1" style="overflow-y: auto; background-color: #e9ecef;">
+                @foreach (var message in Model)
+                {
+                    <div class="message @(message.UserName == "John Doe" ? "message-right" : "message-left") p-2 mb-2 rounded" style="width: fit-content; max-width: 70%;">
+                        <strong>@message.UserName</strong>: @message.Message <small>(@message.Timestamp.ToString("HH:mm:ss"))</small>
+                    </div>
+                }
+            </div>
+
+            <!-- 文字輸入區 -->
+            <div class="chat-footer p-3" style="background-color: #f1f1f1; display: flex; align-items: center; border-top: 1px solid #ddd;">
+                <input type="text" id="messageInput" class="form-control mr-2" placeholder="Type a message" style="flex-grow: 1;" />
+                <button class="btn btn-primary" id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles {
+    <style>
+        .chat-list {
+            border-right: 1px solid #ddd;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .chat-header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .chat-body {
+            padding: 15px;
+            overflow-y: auto;
+            flex-grow: 1;
+            background-color: #e9ecef;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+        }
+
+        .message-left {
+            background-color: white;
+            align-self: flex-start;
+        }
+
+        .message-right {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chat-footer {
+            padding: 1rem;
+            border-top: 1px solid #ddd;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+        }
+
+        .list-group-item {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .list-group-item img {
+            margin-right: 10px;
+        }
+
+        .list-group-item.active {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+}

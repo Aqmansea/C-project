@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to Chat Room</h1>
+        <p class="lead">Real-time chat application built with ASP.NET Core and SignalR.</p>
+        <hr class="my-4">
+        <div class="auth-buttons">
+            <a class="btn btn-primary btn-lg" href="/Account/Login" role="button">Login</a>
+            <a class="btn btn-secondary btn-lg" href="/Account/Register" role="button">Register</a>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .jumbotron {
+            background-color: #fff;
+            padding: 2rem 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #29394c;
+            font-weight: bold;
+        }
+
+        p.lead {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .auth-buttons {
+            margin-top: 20px;
+        }
+
+        .auth-buttons .btn {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
+        /* 改變按鈕的顏色及字體顏色 */
+        a.btn-primary {
+            background-color: #4CAF50; /* 綠色 */
+            border-color: #4CAF50;
+            color: white; /* 白色字體 */
+        }
+
+        a.btn-primary:hover {
+            background-color: #45a049; /* 深綠色 */
+            border-color: #45a049;
+        }
+
+        a.btn-secondary {
+            background-color: #f0ad4e; /* 橙色 */
+            border-color: #f0ad4e;
+            color: white; /* 白色字體 */
+        }
+
+        a.btn-secondary:hover {
+            background-color: #ec971f; /* 深橙色 */
+            border-color: #ec971f;
+        }
+    </style>
+}
